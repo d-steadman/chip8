@@ -3,7 +3,7 @@
 
 /* Chip8 internal emulator state */
 typedef struct {
-    uint8_t ram[0xFF];
+    uint8_t *ram;
     uint8_t V[0xF]; // Registers
     uint16_t pc;    // Program counter
     Instruction instruction;
@@ -31,7 +31,6 @@ typedef struct {
 Chip8 *init_chip8(void);
 void load_game(const char *filename);
 void read_instruction(void);
-void parse_instruction(void);
 
 // Extern variables
 extern Chip8 *chip8;
