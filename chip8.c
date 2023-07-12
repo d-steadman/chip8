@@ -8,6 +8,7 @@
 
 #include "chip8.h"
 
+/* Creates Chip8 struct and sets it to a starting state */
 Chip8 *init_chip8(void) {
     // Allocate memory
     Chip8 *chip8 = calloc(1, sizeof(Chip8));
@@ -28,6 +29,15 @@ Chip8 *init_chip8(void) {
     return chip8;
 }
 
+/* Frees Chip8 object and its associated memory */
+void free_chip8(void) {
+    free(chip8->ram);
+    free(chip8->keyboard);
+    free(chip8->display);
+    free(chip8);
+}
+
+/* Loads a game into memory */
 void load_game(const char *filename) {
     int fd = open(filename, O_RDONLY);
 
@@ -37,6 +47,7 @@ void load_game(const char *filename) {
     close(fd);
 }
 
+/* Reads an instruction from memory and populates instruction object */
 void read_instruction(void) {
     // Chip8 instruction is 16-bit big-endian integer
     uint16_t instruction = (chip8->ram[chip8->pc] << 8) | chip8->ram[chip8->pc + 1];

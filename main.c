@@ -10,5 +10,7 @@ int main() {
     chip8 = init_chip8();
     load_game("tests/ibm.ch8");
 
+    free_chip8();
+
     return 0;
 }

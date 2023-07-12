@@ -29,6 +29,7 @@ typedef struct {
 } Chip8;
 
 Chip8 *init_chip8(void);
+void free_chip8(void);
 void load_game(const char *filename);
 void read_instruction(void);
 
